@@ -1,11 +1,10 @@
 package br.ucsal.bes.poo20221.ted.domain;
 
-public class Mago extends Personagem {
+public final class Mago extends Personagem {
 	
-	public Mago() {
-	super();
-	}
+	
 
+    //Construtor privado para ser acessado apenas pelo getInstancia
 	public Mago(String nomeChar, String nomePlayer, int idade, String raca, int pv, int nivel,
 			int frc, int des, int con, int itl, int sab, int car,
 			boolean fireball, boolean persuasao, boolean curaFeitico) {
@@ -18,12 +17,26 @@ public class Mago extends Personagem {
 		
 	}
 
-	private String PrincipalAtaque;
-
+  
 	// habilidades unicas de mago
 	private boolean fireball;
 	private boolean persuasao;
 	private boolean curaFeitico;
+	
+	
+	//Atributo de instância que será usado para a criação.
+    private static Mago INSTANCIA;
+	
+    //Metódo que instancia um novo ladino apenas se não há uma instância já criada.
+	public static Mago getInstancia(String nomeChar, String nomePlayer, int idade, String raca, int pv, int nivel,
+    int frc, int des, int con, int itl, int sab, int car,
+    boolean fireball, boolean persuasao, boolean curaFeitico) {
+    		if (INSTANCIA == null) {
+    			INSTANCIA = new Mago(nomeChar, nomePlayer, idade, raca, pv, nivel, frc, des, con, itl, sab, car,
+                fireball, persuasao, curaFeitico);
+            }
+            return INSTANCIA;
+        }
 
 	// getters and setters
 	public boolean isFireball() {
@@ -50,14 +63,6 @@ public class Mago extends Personagem {
 		this.curaFeitico = curaFeitico;
 	}
 
-	public String getPrincipalAtaque() {
-		return PrincipalAtaque;
-	}
-
-	public void setPrincipalAtaque(String PrincipalAtaque) {
-		this.PrincipalAtaque = PrincipalAtaque;
-	}
-	
 	@Override
 	public String toString() {
 		String ficha;

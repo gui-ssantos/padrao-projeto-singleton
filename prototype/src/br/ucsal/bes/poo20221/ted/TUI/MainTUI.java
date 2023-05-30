@@ -22,16 +22,17 @@ public class MainTUI {
 		try {
 			switch (escolha) {
 			case 1:
-				print("Abrindo menu de criação de ficha...\n");
+				print("Abrindo menu de criaï¿½ï¿½o de ficha...\n");
 				criarPersonagem();
 				menuPrincipal();
 				break;
 			case 2:
 					print("Imprimindo fichas...\n\n");
 					imprimirFichas();
+					System.out.println();
 				break;
 			default:
-				throw new ValorIncorretoException("Valor inserido incorretamente, insira um número entre 1 e 2.");
+				throw new ValorIncorretoException("Valor inserido incorretamente, insira um nï¿½mero entre 1 e 2.");
 				}
 			} catch (ValorIncorretoException e) {
 				System.out.println(e.getMessage());
@@ -56,7 +57,7 @@ public class MainTUI {
 
 	private static void escolhaClasse() throws ValorIncorretoException {
 		Scanner ent = new Scanner(System.in);
-		print("Escolha aa classe digitando o respectivo número:\n1) Bárbaro\n2) Ladino\n3) Mago\n4) Ranger");
+		print("Escolha aa classe digitando o respectivo nï¿½mero:\n1) Bï¿½rbaro\n2) Ladino\n3) Mago\n4) Ranger");
 		int escolha = ent.nextInt();
 		try {
 			switch (escolha) {
@@ -73,7 +74,7 @@ public class MainTUI {
 				RangerTUI.criacaoPrincipal();
 				break;
 			default:
-			 	throw new ValorIncorretoException("Valor incorretamente informado, insira um número entre 1 e 4.");
+			 	throw new ValorIncorretoException("Valor incorretamente informado, insira um nï¿½mero entre 1 e 4.");
 			}
 		} catch (ValorIncorretoException e) {
 			System.out.println(e.getMessage());

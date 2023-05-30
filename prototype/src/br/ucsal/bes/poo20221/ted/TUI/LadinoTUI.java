@@ -22,52 +22,52 @@ public class LadinoTUI {
 		try {
 			raca = escolherRaca();
 		} catch (ValorIncorretoException e) {
-			print("Valor informado de forma incorreta, escolha uma opção entre 1 e 4");
+			print("Valor informado de forma incorreta, escolha uma opï¿½ï¿½o entre 1 e 4");
 		}
 		
 		print("Informe os pontos de vida do seu personagem:");
 		int pv = ent.nextInt();
 		
-		print("Informe o nível do seu personagem:");
+		print("Informe o nï¿½vel do seu personagem:");
 		int nivel = ent.nextInt();
 		
 		//leitor de atributos
-		print("Insira o número da força do seu personagem: ");
+		print("Insira o nï¿½mero da forï¿½a do seu personagem: ");
 		int frc = ent.nextInt();
 		
-		print("Insira o número da destreza do seu personagem: ");
+		print("Insira o nï¿½mero da destreza do seu personagem: ");
 		int des = ent.nextInt();
 		
-		print("Insira o número da constituição do seu personagem: ");
+		print("Insira o nï¿½mero da constituiï¿½ï¿½o do seu personagem: ");
 		int con = ent.nextInt();
 		
-		print("Insira o número da inteligência do seu personagem: ");
+		print("Insira o nï¿½mero da inteligï¿½ncia do seu personagem: ");
 		int itl = ent.nextInt();
 		
-		print("Insira o número da sabedoria do seu personagem: ");
+		print("Insira o nï¿½mero da sabedoria do seu personagem: ");
 		int sab = ent.nextInt();
 		
-		print("Insira o número da carisma do seu personagem: ");
+		print("Insira o nï¿½mero da carisma do seu personagem: ");
 		int car = ent.nextInt();
 		
 		boolean ataqueFurtivo = temAtaqueFurtivo();
 		boolean esquivaSN = temEsquivaSN();
 		boolean furtiSuperior = temFurtiSuperior();
 		
-		Ladino ladino = new Ladino(nomeChar, nomePlayer, idade, raca, pv, nivel,
-				frc, des, con, itl, sab, car,
-				ataqueFurtivo, esquivaSN, furtiSuperior);
+		
+		//Apenas um objeto dessa classe Ã© criado com o getInstancia. Ao tentar criar outro, o primeiro objeto permanecerÃ¡ como Ãºnico.
+		Ladino ladino = Ladino.getInstancia(nomeChar, nomePlayer, idade, raca,
+		pv, nivel, frc, des, con, itl, sab, car, ataqueFurtivo, esquivaSN, furtiSuperior);
 		
 		PersonagemBO.cadastrarLadino(ladino);
 		
-		ladino.setPrincipalAtaque("Prepare-se para ataques furtivos!");
 		
 	}
 
 	private static boolean temAtaqueFurtivo() {
 		Scanner ent = new Scanner(System.in);
 		boolean en = false;
-		print("Seu personagem tem a habilidade Ataque furtivo?" + "\n1) Sim" + "\n2) Não");
+		print("Seu personagem tem a habilidade Ataque furtivo?" + "\n1) Sim" + "\n2) Nï¿½o");
 		int escolha = ent.nextInt();
 		try {
 			switch (escolha) {
@@ -76,10 +76,10 @@ public class LadinoTUI {
 			case 2:
 				return false;
 			default:
-				throw new ValorIncorretoException("Valor incorretamente informado, insira um número entre 1 e 2.");
+				throw new ValorIncorretoException("Valor incorretamente informado, insira um nï¿½mero entre 1 e 2.");
 			}
 		} catch (ValorIncorretoException e) {
-			print("Valor incorretamente informado, insira um número entre 1 e 2.");
+			print("Valor incorretamente informado, insira um nï¿½mero entre 1 e 2.");
 			temAtaqueFurtivo();
 		}
 		return en;
@@ -88,7 +88,7 @@ public class LadinoTUI {
 	private static boolean temEsquivaSN() {
 		Scanner ent = new Scanner(System.in);
 		boolean en = false;
-		print("Seu personagem tem a habilidade Esquiva Sobrenatural?" + "\n1) Sim" + "\n2) Não");
+		print("Seu personagem tem a habilidade Esquiva Sobrenatural?" + "\n1) Sim" + "\n2) Nï¿½o");
 		int escolha = ent.nextInt();
 		try {
 			switch (escolha) {
@@ -97,10 +97,10 @@ public class LadinoTUI {
 			case 2:
 				return false;
 			default:
-				throw new ValorIncorretoException("Valor incorretamente informado, insira um número entre 1 e 2.");
+				throw new ValorIncorretoException("Valor incorretamente informado, insira um nï¿½mero entre 1 e 2.");
 			}
 		} catch (ValorIncorretoException e) {
-			print("Valor incorretamente informado, insira um número entre 1 e 2.");
+			print("Valor incorretamente informado, insira um nï¿½mero entre 1 e 2.");
 			temEsquivaSN();
 		}
 		return en;
@@ -109,7 +109,7 @@ public class LadinoTUI {
 	private static boolean temFurtiSuperior() {
 		Scanner ent = new Scanner(System.in);
 		boolean en = false;
-		print("Seu personagem tem a habilidade Furtividade Superior?" + "\n1) Sim" + "\n2) Não");
+		print("Seu personagem tem a habilidade Furtividade Superior?" + "\n1) Sim" + "\n2) Nï¿½o");
 		int escolha = ent.nextInt();
 		try {
 			switch (escolha) {
@@ -118,10 +118,10 @@ public class LadinoTUI {
 			case 2:
 				return false;
 			default:
-				throw new ValorIncorretoException("Valor incorretamente informado, insira um número entre 1 e 2.");
+				throw new ValorIncorretoException("Valor incorretamente informado, insira um nï¿½mero entre 1 e 2.");
 			}
 		} catch (ValorIncorretoException e) {
-			print("Valor incorretamente informado, insira um número entre 1 e 2.");
+			print("Valor incorretamente informado, insira um nï¿½mero entre 1 e 2.");
 			temFurtiSuperior();
 		}
 		return en;
@@ -130,8 +130,8 @@ public class LadinoTUI {
 	private static String escolherRaca() throws ValorIncorretoException {
 		String raca;
 		Scanner ent = new Scanner(System.in);
-		print("Escolha a Raça digitando o respectivo número:" + "\n1) Humano" + "\n2) Elfo" + "\n3) Orc"
-				+ "\n4) Anão");
+		print("Escolha a Raï¿½a digitando o respectivo nï¿½mero:" + "\n1) Humano" + "\n2) Elfo" + "\n3) Orc"
+				+ "\n4) Anï¿½o");
 		int escolha = ent.nextInt();
 		switch (escolha) {
 		case 1:
@@ -144,10 +144,10 @@ public class LadinoTUI {
 			raca = "Orc";
 			break;
 		case 4:
-			raca = "Anão";
+			raca = "Anï¿½o";
 			break;
 		default:
-			throw new ValorIncorretoException("Valor incorretamente informado, insira um número entre 1 e 4.");
+			throw new ValorIncorretoException("Valor incorretamente informado, insira um nï¿½mero entre 1 e 4.");
 		}
 		return raca;
 	}

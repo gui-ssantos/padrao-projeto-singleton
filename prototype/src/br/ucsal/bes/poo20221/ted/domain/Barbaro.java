@@ -1,11 +1,9 @@
 package br.ucsal.bes.poo20221.ted.domain;
 
-public class Barbaro extends Personagem {
-	public Barbaro() {
-		super();
-	}
-	
-	public Barbaro(String nomeChar, String nomePlayer, int idade, String raca, int pv, int nivel,
+public final class Barbaro extends Personagem {
+
+	//Construtor privado para ser acessado apenas pelo getInstancia
+	private Barbaro(String nomeChar, String nomePlayer, int idade, String raca, int pv, int nivel,
 			int frc, int des, int con, int itl, int sab, int car,
 			boolean esquivaN, boolean furia, boolean reducaoDano) {
 		
@@ -17,6 +15,7 @@ public class Barbaro extends Personagem {
 		
 	}
 	
+	
 	// habilidades unicas de barbaro
 	// achei melhor colocar só 3 habilidades por classe de personagem, pra não ficar
 	// muita coisa desnecessária
@@ -26,7 +25,19 @@ public class Barbaro extends Personagem {
 	private boolean furia;
 	private boolean reducaoDano;
 	
-	private String PrincipalAtaque = "";
+	//Atributo de instância que será usado para a criação.
+	private static Barbaro INSTANCIA;
+	//Metódo que instancia um novo bárbaro apenas se não há uma instância já criada.
+	public static Barbaro getInstancia(String nomeChar, String nomePlayer, int idade, String raca, int pv, int nivel,
+			int frc, int des, int con, int itl, int sab, int car,
+			boolean esquivaN, boolean furia, boolean reducaoDano) {
+		if (INSTANCIA == null) {
+			INSTANCIA = new Barbaro(nomeChar, nomePlayer, idade, raca, pv, nivel, frc, des,
+			con, itl, sab, car, esquivaN, furia, reducaoDano);
+		}
+		return INSTANCIA;
+	}
+	
 
 	public boolean isEsquivaN() {
 		return esquivaN;
@@ -52,13 +63,6 @@ public class Barbaro extends Personagem {
 		this.reducaoDano = reducaoDano;
 	}
 
-	public String getPrincipalAtaque() {
-		return PrincipalAtaque;
-	}
-
-	public void setPrincipalAtaque(String PrincipalAtaque) {
-		this.PrincipalAtaque = PrincipalAtaque;
-	}
 	@Override
 	public String toString() {
 		String ficha;

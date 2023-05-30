@@ -1,11 +1,9 @@
 package br.ucsal.bes.poo20221.ted.domain;
 
-public class Ranger extends Personagem {
+public final class Ranger extends Personagem {
 	
-	public Ranger() {
-		super();
-	}
-	public Ranger(String nomeChar, String nomePlayer, int idade, String raca, int pv, int nivel,
+	//Construtor privado para ser acessado apenas pelo getInstancia
+	private Ranger(String nomeChar, String nomePlayer, int idade, String raca, int pv, int nivel,
 			int frc, int des, int con, int itl, int sab, int car,
 			boolean rastreadorEficaz, boolean rastroInvisivel, boolean camuflagem) {
 		
@@ -16,12 +14,25 @@ public class Ranger extends Personagem {
 		this.camuflagem = camuflagem;
 	}
 
+  
 	// https://tsrd.fandom.com/pt-br/wiki/Per%C3%ADcias_B%C3%A1sico
 	private boolean rastreadorEficaz;
 	private boolean rastroInvisivel;
 	private boolean camuflagem;
-
-	private String PrincipalAtaque = "Prepare-se para ataques de longa distância!";
+	
+	//Atributo de instância que será usado para a criação.
+	 private static Ranger INSTANCIA;
+	 
+	//Metódo que instancia um novo ladino apenas se não há uma instância já criada.
+	 public static Ranger getInstancia(String nomeChar, String nomePlayer, int idade, String raca, int pv, int nivel,
+			    int frc, int des, int con, int itl, int sab, int car,
+			    boolean rastreadorEficaz, boolean rastroInvisivel, boolean camuflagem) {
+			    		if (INSTANCIA == null) {
+			    			INSTANCIA = new Ranger(nomeChar, nomePlayer, idade, raca, pv, nivel, frc, des, con, itl, sab, car,
+			                rastreadorEficaz, rastroInvisivel, camuflagem);
+			            }
+			            return INSTANCIA;
+			        }
 
 	// getters e setters
 	public boolean isRastreadorEficaz() {
@@ -48,13 +59,6 @@ public class Ranger extends Personagem {
 		this.camuflagem = camuflagem;
 	}
 
-	public String getPrincipalAtaque() {
-		return PrincipalAtaque;
-	}
-
-	public void setPrincipalAtaque(String PrincipalAtaque) {
-		this.PrincipalAtaque = PrincipalAtaque;
-	}
 	@Override
 	public String toString() {
 		String ficha;

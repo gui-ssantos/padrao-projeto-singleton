@@ -1,12 +1,10 @@
 package br.ucsal.bes.poo20221.ted.domain;
 
-public class Ladino extends Personagem {
+public final class Ladino extends Personagem {
 	
-	public Ladino() {
-	super();
-	}
 	
-	public Ladino(String nomeChar, String nomePlayer, int idade, String raca, int pv, int nivel,
+	//Construtor privado para ser acessado apenas pelo getInstancia
+	private Ladino(String nomeChar, String nomePlayer, int idade, String raca, int pv, int nivel,
 			int frc, int des, int con, int itl, int sab, int car,
 			boolean ataqueFurtivo, boolean esquivaSN, boolean furtiSuperior) {
 		
@@ -22,9 +20,21 @@ public class Ladino extends Personagem {
 	private boolean ataqueFurtivo;
 	private boolean esquivaSN; // esquiva sobrenatural
 	private boolean furtiSuperior;
-
-	private String PrincipalAtaque;
-
+	
+	
+	//Atributo de instância que será usado para a criação.
+	private static Ladino INSTANCIA;
+	//Metódo que instancia um novo ladino apenas se não há uma instância já criada.
+	public static Ladino getInstancia(String nomeChar, String nomePlayer, int idade, String raca, int pv, int nivel,
+			int frc, int des, int con, int itl, int sab, int car,
+			boolean ataqueFurtivo, boolean esquivaSN, boolean furtiSuperior) {
+		if (INSTANCIA == null) {
+			INSTANCIA = new Ladino(nomeChar, nomePlayer, idade, raca, pv, nivel, frc, des,
+			con, itl, sab, car, ataqueFurtivo, esquivaSN, furtiSuperior);
+		}
+		return INSTANCIA;
+	}
+	
 	// getters e setters
 	public boolean isAtaqueFurtivo() {
 		return ataqueFurtivo;
@@ -50,13 +60,6 @@ public class Ladino extends Personagem {
 		this.furtiSuperior = furtiSuperior;
 	}
 
-	public String getPrincipalAtaque() {
-		return PrincipalAtaque;
-	}
-
-	public void setPrincipalAtaque(String PrincipalAtaque) {
-		this.PrincipalAtaque = PrincipalAtaque;
-	}
 	@Override
 	public String toString() {
 		String ficha;
